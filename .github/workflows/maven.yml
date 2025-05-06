@@ -32,4 +32,4 @@ jobs:
     - name: Docker Build image and show
       run: |
         docker build . --file Dockerfile --tag academy:$(date +%s)
-        docker images ls
+        docker image ls
