@@ -14,8 +14,8 @@ runs:
   using: composite
   steps:
     - name: tag image
-      run: docker image tag ${{inputs.docker_image}}:${{inputs.image_tag}} ${{inputs.docker_image}}:${{inputs.docker_username}}
+      run: docker image tag ${{inputs.docker_image}}:${{inputs.image_tag}} ${{inputs.docker_username}}/${{inputs.docker_image}}:${{inputs.image_tag}}
       shell: bash
     - name: tag image
-      run: docker image push ${{inputs.docker_image}}/${{inputs.docker_username}}
+      run: docker image push ${{inputs.docker_username}}/${{inputs.docker_image}}:${{inputs.image_tag}}
       shell: bash
