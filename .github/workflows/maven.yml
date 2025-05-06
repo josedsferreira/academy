@@ -14,9 +14,9 @@ on:
   pull_request:
     branches: [ "main" ]
 env:
-  docker-image-name: "academy_image"
-  docker-tag-name: "academy"
-  artifact-name: "academy_artifact"
+  docker_image_name: "academy_image"
+  docker_tag_name: "academy"
+  artifact_name: "academy_artifact"
 
 jobs:
   build:
@@ -34,15 +34,15 @@ jobs:
     - name: Docker Build image
       uses: ./.github/actions/docker_build
       with:
-        tag_name: $docker-tag-name
-        image_name: $docker-image-name
+        tag_name: $docker_tag_name
+        image_name: $docker_image_name
     - name: docker save action
-      run: docker save -o .tar $docker-image-name
+      run: docker save -o .tar $docker_image_name
     - name: docker-artifact-upload
       uses: actions/upload-artifact@v4
       with:
-        name: $artifact-name
-        path: /$docker-image-name.tar
+        name: $artifact_name
+        path: /$docker_image_name.tar
 
   show-image:
     needs: build
