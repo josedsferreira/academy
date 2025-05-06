@@ -34,5 +34,10 @@ jobs:
       with:
         tag_name: academy
         image_name: 'academy-image'
-    - name: show built docker image
-      run: docker image ls
+
+  show-image:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: show built docker image
+        run: docker image ls
