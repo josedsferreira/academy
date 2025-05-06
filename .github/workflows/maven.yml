@@ -37,7 +37,9 @@ jobs:
         tag_name: $docker_tag_name
         image_name: $docker_image_name
     - name: docker save action
-      run: docker save -o .tar $docker_image_name
+      run: |
+        docker save -o .tar $docker_image_name
+        ls -la
     - name: docker-artifact-upload
       uses: actions/upload-artifact@v4
       with:
