@@ -31,5 +31,8 @@ jobs:
       uses: ./.github/actions/maven_build
     - name: Docker Build image
       uses: ./.github/actions/docker_build
+      with:
+        tag_name: academy
+        image_name: 'academy-image'
     - name: show built docker image
       run: docker image ls
