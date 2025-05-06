@@ -13,6 +13,10 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+env:
+  docker-image-name: "academy-image"
+  docker-tag-name: "academy"
+  artifact-name: "academy-artifact"
 
 jobs:
   build:
@@ -30,8 +34,20 @@ jobs:
     - name: Docker Build image
       uses: ./.github/actions/docker_build
       with:
-        tag_name: academy
-        image_name: 'academy-image'
+        tag_name: $docker-tag-name
+        image_name: $docker-image-name
+    - name: docker save action
+      run: docker save -o .tar $docker-image-name:$docker-tag-name
+
+  upload-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - run: mkdir -p /$artifact-name
+      - run: echo hello > /$artifact-name/$docker-image-name:$docker-tag-name.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: $artifact-name
+          path: /$artifact-name/$docker-image-name:$docker-tag-name.tar
 
   show-image:
     needs: build
