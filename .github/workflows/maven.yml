@@ -69,3 +69,4 @@ jobs:
         with:
           docker_image: ${{ env.docker_image_name }}
           docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          image_tag: ${{ env.docker_tag_name }}

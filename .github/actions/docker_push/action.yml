@@ -7,11 +7,14 @@ inputs:
   docker_image:
     description: "docker image"
     required: false
+  image_tag:
+    description: "original docker image tag"
+    required: false
 runs:
   using: composite
   steps:
     - name: tag image
-      run: docker image tag ${{inputs.docker_image}} ${{inputs.docker_image}}:${{inputs.docker_username}}
+      run: docker image tag ${{inputs.docker_image}}:${{inputs.image_tag}} ${{inputs.docker_image}}:${{inputs.docker_username}}
       shell: bash
     - name: tag image
       run: docker image push ${{inputs.docker_image}}:${{inputs.docker_username}}
