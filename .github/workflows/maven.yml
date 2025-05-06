@@ -16,9 +16,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -36,7 +34,7 @@ jobs:
         image_name: 'academy-image'
 
   show-image:
-
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: show built docker image
